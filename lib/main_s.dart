@@ -12,7 +12,6 @@ import 'package:provider/provider.dart';
 final routeObserver = RouteObserver();
 
 class ShemApp extends StatelessWidget {
-  // final Widget splash;
   final dynamic options;
 
   const ShemApp({super.key, this.options});
