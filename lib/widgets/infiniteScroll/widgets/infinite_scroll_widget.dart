@@ -26,6 +26,7 @@ class InfiniteScrollWidget extends StatelessWidget {
       pagingController: pagingController,
       padding: EdgeInsets.symmetric(horizontal: paddingHorizontal.w, vertical: paddingVertical.h),
       physics: const ClampingScrollPhysics(),
+      cacheExtent: 100,
       builderDelegate: PagedChildBuilderDelegate<dynamic>(
         animateTransitions: true,
         noItemsFoundIndicatorBuilder: (context) {

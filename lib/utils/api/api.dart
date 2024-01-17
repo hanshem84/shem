@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:shem/utils/debug_print.dart';
 import 'package:shem/utils/image/image_compress.dart';
@@ -218,9 +219,9 @@ apiPatch(var url, var data, var header) async {
 }
 
 imageUpload(String apiUrl, String imagePath) async {
-  File decompressImage = await compressToJpeg(File(imagePath));
+  XFile decompressImage = await compressToJpeg(File(imagePath));
   String fileExtension = decompressImage.path.split(".").last;
-  List<int> imageBytes = decompressImage.readAsBytesSync();
+  List<int> imageBytes = await decompressImage.readAsBytes();
 
   String base64File = base64Encode(imageBytes);
 

@@ -75,7 +75,6 @@ class SplashController<T> extends GetxController {
 
   nextPage() async {
     dPrint("nextPage");
-    dPrint(options);
 
     await int.parse(options['delayTime'].toString()).delay();
 

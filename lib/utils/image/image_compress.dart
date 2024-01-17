@@ -5,7 +5,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:uuid/uuid.dart';
 import 'package:path_provider/path_provider.dart';
 
-Future<File> compressToJpeg(
+Future<XFile> compressToJpeg(
   File file,
 ) async {
   final dir = await getTemporaryDirectory();
@@ -20,7 +20,7 @@ Future<File> compressToJpeg(
     quality: 100,
   ).catchError((onError) {});
 
-  var decodedImage = await decodeImageFromList(result!.readAsBytesSync()).catchError((onError) {});
+  var decodedImage = await decodeImageFromList(await result!.readAsBytes()).catchError((onError) {});
 
   String name = Uuid().v4() + "img";
   int minHeight = 1350;
@@ -44,7 +44,7 @@ Future<File> compressToJpeg(
 
   final myPath = dir.absolute.path + "/$name-cmp-$orientation.jpg";
   var finalResult = await FlutterImageCompress.compressAndGetFile(
-    result.absolute.path,
+    result.path,
     myPath,
     format: CompressFormat.jpeg,
     autoCorrectionAngle: true,
